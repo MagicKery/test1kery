@@ -47,7 +47,7 @@
         <div class="container mx-auto px-6 text-center z-10">
             <div class="mb-8">
                 <!-- Placeholder Image - Replace with your professional photo -->
-                <img src="" alt="Your Professional Photo" class="w-36 h-36 rounded-full mx-auto shadow-lg border-4 border-white object-cover">
+                <img src="https://share.google/hClqc3HY1f9WSaLwC" alt="Your Professional Photo" class="w-36 h-36 rounded-full mx-auto shadow-lg border-4 border-white object-cover">
             </div>
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-up">
                 Hi, I'm <span class="text-yellow-300">TGKR</span>
