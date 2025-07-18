@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Full Stack Developer Portfolio</title>
+    <title>TGKR - Full Stack Developer Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for Icons -->
@@ -43,7 +43,7 @@
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-md fixed w-full z-10 top-0">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-indigo-600 rounded-lg p-2 hover:bg-indigo-50 transition-colors duration-300">Your Name</a>
+            <a href="#hero" class="text-2xl font-bold text-indigo-600 rounded-lg p-2 hover:bg-indigo-50 transition-colors duration-300">TGKR</a>
             <div class="hidden md:flex space-x-6">
                 <a href="#about" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 rounded-lg p-2 hover:bg-indigo-50">About</a>
                 <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 rounded-lg p-2 hover:bg-indigo-50">Skills</a>
@@ -109,7 +109,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="text-lg leading-relaxed text-gray-600">
                     <p class="mb-4">
-                        Hello! I'm <span class="font-semibold text-indigo-600">Your Name</span>, a passionate Full-Stack Developer with a strong foundation in both frontend and backend technologies. My journey in web development began with a fascination for creating intuitive user interfaces and evolved into a love for building robust, scalable server-side applications.
+                        Hello! I'm <span class="font-semibold text-indigo-600">TGKR</span>, a passionate Full-Stack Developer with a strong foundation in both frontend and backend technologies. My journey in web development began with a fascination for creating intuitive user interfaces and evolved into a love for building robust, scalable server-side applications.
                     </p>
                     <p class="mb-4">
                         I specialize in crafting seamless web experiences, from pixel-perfect designs to efficient database interactions. My goal is to transform complex ideas into elegant and functional digital solutions that deliver real value.
