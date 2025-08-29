@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBirthday!</title>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.4/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <header class="bg-gray-900 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">Srun<span class="text-2xl font-bold text-teal-400">TongKor.</span></div>
+            <nav class="space-x-4 hidden md:flex">
+                <a href="#about" class="hover:text-teal-400 transition-colors">About</a>
+                <a href="#projects" class="hover:text-teal-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-teal-400 transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="h-screen flex items-center justify-center text-center bg-gray-800">
+        <div class="max-w-4xl px-4">
+            <div class="container mx-auto px-4 text-center">
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.P1a1tCmK995b0IuQuYYlUAHaE6%3Fpid%3DApi&f=1&ipt=79d7e2bc893fb257d5bc6ed25181844c06638f0d1eddeb330ce102704c546b44&ipo=images" alt="Birthday Cake" class="mx-auto mb-6 rounded-lg shadow-lg">
+            </div>
+            <!---->
+            <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight text-white mb-4">
+                It's My <span class="text-teal-400">Birthday!</span>
+            </h1>
+            <p class="text-lg sm:text-2xl text-gray-400 mb-8">
+                A passionate web developer specializing in building modern, responsive, and user-friendly websites.
+            </p>
+            <a href="#wish" class="inline-block bg-teal-500 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-teal-400 transition-colors">
+                Make a wish!
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">Goal Planing!</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center md:space-x-12">
+                <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F193201.jpg&f=1&nofb=1&ipt=4e436db65b00e7c7d66291825ae18816945ad158eb011ca88dd5278d951cd235" alt="Your Portrait" class="rounded-full w-64 h-64 object-cover mx-auto md:mx-0 shadow-lg border-4 border-gray-700">
+                </div>
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <p class="text-lg text-gray-400 leading-relaxed mb-4">
+                        Hello! My name is [<b>Srun TongKor</b>], and I can make a website with by my own for creating beautiful and functional digital experiences. I have a Future plan to travel around the world.
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        I enjoy solving complex problems and I'm always learn new technologies to improve my skills. This years is my 18th Birthday so now I have freedom to do anything that I want such as Trading, and a lot of adults can do. When I'm not coding, I enjoy <i class="fa-solid fa-light fa-cube"></i>Minecraft, <i class="fa-solid fa-camera-retro"></i>photography, and <i class="fa-solid fa-bed"></i>Sleep.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wish" class="bg-gray-800 py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">Leave a Wish!</h2>
+            <div class="w-full md:w-[70%] lg:w-[50%] mx-auto text-center">
+                <div class=" bg-gray-900 rounded-lg shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300">
+                    
+                    <form class="mx-8 pb-8 pt-4" action="https://getform.io/f/aolzgnxb" method="POST">
+                        <div>
+                            <div class="mx-auto text-center">
+                                <label for="name" class="text-lg font-bold text-center mb-12 text-white">Anonymous</label>
+                            </div>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="Name or anonymous" 
+                                required
+                                class="w-full px-4 py-3 bg-transparent border-2 border-indigo-300 rounded-lg shadow-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                >
+                            </div>
+
+                            <div>
+                                <div class="mx-auto text-center">
+                                    <label for="message" class="text-lg font-bold text-center mb-12 text-white">Your message to me</label>
+                                </div>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="5" 
+                                placeholder="Leaves a Wish"
+                                required
+                                class="w-full px-4 py-3 bg-transparent border-2 border-indigo-300 rounded-lg shadow-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                ></textarea>
+                            </div>
+                                <!-- Buttons -->
+                            <div class="flex space-x-4 mt-4 justify-center">
+                                <!-- Donate Button -->
+
+                            <div class="w-1/2 md:w-auto px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center justify justify-center" id="#donate" onclick="donate()" style="cursor: pointer;">
+                                <a href="#">🎉Gift! 🎁</i></a>
+                            </div>
+                            <label for="submit" class="w-1/2 md:w-auto px-6 py-3 bg-pink-500 text-white font-semibold rounded-lg shadow-md hover:bg-pink-600 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300" style="cursor: pointer;">
+                                <input type="submit" value="Sent" id="submit" class="justify justify-center items-center" style="cursor: pointer;"><i class="fa-solid fa-paper-plane"></i>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-12 text-white">Get In Touch</h2>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+                I'm always open to new opportunities and collaborations. Feel free to reach out to me via email or social media.
+            </p>
+            <a href="mailto:magickery49@gmail.com" class="inline-block bg-white text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors">
+                magickery49@gmail.com
+            </a>
+            <div class="mt-8 space-x-6 text-gray-400">
+                <a href="#" class="hover:text-teal-400 transition-colors">FaceBook</a>
+                <a href="#" class="hover:text-teal-400 transition-colors">YouTube</a>
+                <a href="#" class="hover:text-teal-400 transition-colors">TikTok</a>
+                <a href="#" class="hover:text-teal-400 transition-colors">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 py-6 text-center text-gray-500">
+        <p>&copy; 2025 Srun TongKor. All Rights Reserved.</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.4/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</body>
+</html>
