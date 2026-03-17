@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Profile Section */
+.profile-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #FD1D1D;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.bio {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-bottom: 30px;
+}
+
+/* Links Section */
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.link-btn i {
+    position: absolute;
+    left: 20px;
+    font-size: 1.3rem;
+}
+
+/* Hover Effects */
+.link-btn:hover {
+    background-color: #e94560;
+    border-color: #e94560;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+}
+
+/* Specific Brand Colors on Hover (Optional) */
+.btn-instagram:hover { background: linear-gradient(90deg,#405DE6,#5851DB,#833AB4,#C13584,#E1306C,#FD1D1D,#F56040,#F77737,#FCAF45,#FFDC80 );; border-color: #E1306C; box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4); }
+.btn-facebook:hover { background: #0165E1; border-color: #17A9FD; box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4); }
+.btn-youtube:hover { background: #FF0000; border-color: #FF0000; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4); }
+.btn-telegram:hover { background: #0077b5; border-color: #0077b5; box-shadow: 0 5px 15px rgba(0, 119, 181, 0.4); }
+.btn-tiktok:hover { background: #000000; border-color: #333; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); }
+.btn-discord:hover { background: #7289DA; border-color: #424549; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); }
+.btn-donate:hover { background: #008000; border-color: #424549; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); }
