@@ -12,7 +12,7 @@ function downloadImage(url, filename) {
             e.preventDefault();
             Swal.fire({
             title: "Do you want to save this image?",
-            imageUrl: "imgs/abaQR.webp",
+            imageUrl: "imgs/abaQR.png",
             imageWidth: 200,
             showDenyButton: true,
             confirmButtonText: "Download",
