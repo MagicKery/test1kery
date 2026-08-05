@@ -20,7 +20,7 @@ function downloadImage(url, filename) {
             }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                downloadImage('abaQR.webp', 'abaQR.webp');
+                downloadImage('abaQR.png', 'abaQR.png');
                 Swal.fire(
                     "Downloaded!",
                     "The image download should begin automatically.",
