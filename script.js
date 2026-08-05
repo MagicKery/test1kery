@@ -12,7 +12,7 @@ function downloadImage(url, filename) {
             e.preventDefault();
             Swal.fire({
             title: "Do you want to save this image?",
-            imageUrl: "abaQR.webp",
+            imageUrl: "imgs/abaQR.webp",
             imageWidth: 200,
             showDenyButton: true,
             confirmButtonText: "Download",
@@ -20,7 +20,7 @@ function downloadImage(url, filename) {
             }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                downloadImage('abaQR.png', 'abaQR.png');
+                downloadImage('imgs/abaQR.png', 'imgs/abaQR.png');
                 Swal.fire(
                     "Downloaded!",
                     "The image download should begin automatically.",
