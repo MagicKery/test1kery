@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER-DECK // MULTI-STREAM NEXUS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #09090b;
+            --panel-surface: #121216;
+            --panel-border: #27272a;
+            --neon-lime: #ccff00;
+            --neon-violet: #a855f7;
+            --neon-cyan: #06b6d4;
+            --danger-red: #f43f5e;
+            --text-main: #fafafa;
+            --text-muted: #a1a1aa;
+            --transition-snap: all 0.25s cubic-bezier(0.1, 1, 0.1, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(204, 255, 0, 0.05) 0%, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .restore-deck-btn {
+            position: fixed;
+            top: 0.75rem;
+            right: 1.5rem;
+            z-index: 100;
+            background: var(--panel-surface);
+            border: 2px solid var(--neon-lime);
+            color: var(--neon-lime);
+            padding: 0.5rem 1rem;
+            border-radius: 0px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px var(--neon-lime);
+            display: none;
+            transition: var(--transition-snap);
+        }
+
+        .restore-deck-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--neon-lime);
+        }
+
+        header {
+            background: var(--panel-surface);
+            border-bottom: 2px solid var(--panel-border);
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            margin: 0;
+            transition: transform 0.3s cubic-bezier(0.1, 1, 0.1, 1), opacity 0.2s ease, margin 0.3s ease, padding 0.3s ease;
+        }
+
+        header.collapsed {
+            transform: translateY(-110%);
+            opacity: 0;
+            margin: 0 !important;
+            padding: 0;
+            pointer-events: none;
+            border-bottom: none;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cyber-badge {
+            width: 12px;
+            height: 12px;
+            background: var(--neon-lime);
+            box-shadow: 0 0 10px var(--neon-lime);
+            animation: pulse-lime 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-lime {
+            0% { transform: scale(0.8); opacity: 0.6; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .brand-title h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: #fff;
+        }
+
+        .brand-title span {
+            font-size: 0.65rem;
+            color: var(--neon-lime);
+            letter-spacing: 0.15em;
+        }
+
+        .controls-deck {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .input-box {
+            background: #000;
+            border: 2px solid var(--panel-border);
+            color: var(--text-main);
+            padding: 0.55rem 0.9rem;
+            font-size: 0.8rem;
+            width: min(340px, 38vw);
+            outline: none;
+            transition: var(--transition-snap);
+        }
+
+        .input-box:focus {
+            border-color: var(--neon-violet);
+            box-shadow: 3px 3px 0px var(--neon-violet);
+        }
+
+        select {
+            background: #000;
+            border: 2px solid var(--panel-border);
+            color: var(--text-main);
+            padding: 0.55rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            transition: var(--transition-snap);
+        }
+
+        select:hover, select:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 3px 3px 0px var(--neon-cyan);
+        }
+
+        .neo-btn {
+            background: var(--neon-lime);
+            color: #000;
+            border: 2px solid #000;
+            padding: 0.55rem 1.1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #fff;
+            transition: var(--transition-snap);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .neo-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #fff;
+        }
+
+        .neo-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #fff;
+        }
+
+        .neo-btn-alt {
+            background: #18181b;
+            color: var(--text-muted);
+            border-color: var(--panel-border);
+            box-shadow: 3px 3px 0px var(--panel-border);
+        }
+
+        .neo-btn-alt:hover {
+            color: #fff;
+            border-color: var(--neon-violet);
+            box-shadow: 5px 5px 0px var(--neon-violet);
+        }
+
+        .grid-viewport {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            width: 100%;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        .streams-grid {
+            display: grid;
+            gap: 1rem;
+            width: 100%;
+            min-height: 100%;
+            align-content: start;
+        }
+
+        .stream-node-card {
+            background: var(--panel-surface);
+            border: 2px solid var(--panel-border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+            aspect-ratio: 16 / 9;
+            min-width: 0;
+            transition: var(--transition-snap);
+        }
+
+        .stream-node-card:hover {
+            border-color: var(--neon-violet);
+            box-shadow: 8px 8px 0px var(--neon-violet);
+            transform: translateY(-2px);
+        }
+
+        .node-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 0.75rem;
+            background: #09090b;
+            border-bottom: 2px solid var(--panel-border);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .node-id {
+            color: var(--neon-lime);
+            font-weight: 700;
+        }
+
+        .node-actions {
+            display: flex;
+            gap: 0.35rem;
+        }
+
+        .node-btn {
+            background: #18181b;
+            border: 1px solid var(--panel-border);
+            color: var(--text-main);
+            width: 24px;
+            height: 24px;
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-snap);
+        }
+
+        .node-btn:hover {
+            background: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+            color: #000;
+            box-shadow: 2px 2px 0px #fff;
+        }
+
+        .node-btn.purge-btn {
+            background: rgba(244, 63, 94, 0.15);
+            border-color: rgba(244, 63, 94, 0.4);
+            color: #fca5a5;
+        }
+
+        .node-btn.purge-btn:hover {
+            background: var(--danger-red);
+            border-color: var(--danger-red);
+            color: #fff;
+            box-shadow: 2px 2px 0px #fff;
+        }
+
+        .node-body {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .empty-matrix {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            color: var(--text-muted);
+            gap: 1rem;
+            text-align: center;
+            background: var(--panel-surface);
+            border: 2px dashed var(--panel-border);
+            margin: 1rem;
+        }
+
+        .empty-icon {
+            width: 54px;
+            height: 54px;
+            background: #000;
+            border: 2px solid var(--neon-violet);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-violet);
+            box-shadow: 4px 4px 0px var(--neon-violet);
+        }
+
+        .empty-matrix h3 {
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .empty-matrix p {
+            font-size: 0.75rem;
+            max-width: 380px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1024px) {
+            header { padding: 0.75rem 1rem; }
+            .controls-deck { width: 100%; justify-content: space-between; }
+            .input-box { width: 100%; flex: 1; }
+        }
+
+        @media (max-width: 640px) {
+            .controls-deck { flex-direction: column; align-items: stretch; }
+            .controls-deck select, .controls-deck button { width: 100%; }
+            .stream-node-card { aspect-ratio: 16 / 10; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="restore-deck-btn" id="restoreDeckBtn" onclick="toggleHeaderDeck()">[⚡ DECK RESTORE]</button>
+
+    <header id="commandHeader">
+        <div class="brand-section">
+            <span class="cyber-badge"></span>
+            <div class="brand-title">
+                <h1>CYBER-DECK</h1>
+                <span id="streamCount">0 STREAMS ACTIVE</span>
+            </div>
+        </div>
+
+        <div class="controls-deck">
+            <input type="text" class="input-box" id="streamUrlInput" placeholder="Paste YouTube/Twitch URL or iframe...">
+            <button class="neo-btn" onclick="addStreamNode()">
+                <span>＋ ADD STREAM</span>
+            </button>
+            <select id="gridModeSelector" onchange="updateGridMatrix()">
+                <option value="auto">✨ AUTO MATRIX</option>
+                <option value="1">1 COLUMN</option>
+                <option value="2">2 COLUMNS</option>
+                <option value="3">3 COLUMNS</option>
+                <option value="4">4 COLUMNS</option>
+            </select>
+            <button class="neo-btn neo-btn-alt" onclick="toggleHeaderDeck()" title="Hide Command Deck">▲ HIDE DECK</button>
+        </div>
+    </header>
+
+    <div class="grid-viewport">
+        <div class="streams-grid" id="streamsGrid">
+            <!-- Dynamically populated stream cards -->
+        </div>
+    </div>
+
+    <script>
+        const streamsGrid = document.getElementById('streamsGrid');
+        const streamUrlInput = document.getElementById('streamUrlInput');
+        const gridModeSelector = document.getElementById('gridModeSelector');
+        const commandHeader = document.getElementById('commandHeader');
+        const restoreDeckBtn = document.getElementById('restoreDeckBtn');
+
+        let streams = JSON.parse(localStorage.getItem('cyber_streams_v1') || '[]');
+        let currentGridMode = localStorage.getItem('cyber_grid_v1') || 'auto';
+
+        gridModeSelector.value = currentGridMode;
+
+        function toggleHeaderDeck() {
+            commandHeader.classList.toggle('collapsed');
+            const isCollapsed = commandHeader.classList.contains('collapsed');
+            restoreDeckBtn.style.display = isCollapsed ? 'block' : 'none';
+        }
+
+        function updateGridMatrix() {
+            const mode = gridModeSelector.value;
+            currentGridMode = mode;
+            localStorage.setItem('cyber_grid_v1', mode);
+
+            if (mode === 'auto') {
+                streamsGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(380px, 1fr))';
+            } else {
+                streamsGrid.style.gridTemplateColumns = `repeat(${mode}, minmax(0, 1fr))`;
+            }
+        }
+
+        function parseStreamSource(input) {
+            input = input.trim();
+
+            if (input.startsWith('<iframe')) {
+                const srcMatch = input.match(/src="([^"]+)"/);
+                return srcMatch ? srcMatch[1] : input;
+            }
+
+            if (input.includes('youtube.com') || input.includes('youtu.be')) {
+                let videoId = '';
+                if (input.includes('youtu.be/')) {
+                    videoId = input.split('youtu.be/')[1].split('?')[0];
+                } else if (input.includes('watch?v=')) {
+                    videoId = input.split('watch?v=').pop().split('&')[0];
+                } else if (input.includes('live/')) {
+                    videoId = input.split('live/')[1].split('?')[0];
+                } else if (input.includes('embed/')) {
+                    videoId = input.split('embed/')[1].split('?')[0];
+                }
+                if (videoId) {
+                    const hostname = window.location.hostname || 'localhost';
+                    const protocol = window.location.protocol || 'http:';
+                    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&enablejsapi=1&origin=${protocol}//${hostname}`;
+                }
+            }
+
+            if (input.includes('twitch.tv/')) {
+                const channel = input.split('twitch.tv/')[1]?.split('/')[0];
+                if (channel && channel !== 'directory' && channel !== 'p') {
+                    const hostname = window.location.hostname || 'localhost';
+                    return `https://player.twitch.tv/?channel=${channel}&parent=${hostname}&autoplay=true`;
+                }
+            }
+
+            return input;
+        }
+
+        function escapeMarkup(str) {
+            return str.replace(/[&<>"']/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+            }[char]));
+        }
+
+        function updateNodeCounter() {
+            const count = streams.length;
+            document.getElementById('streamCount').textContent = `${count} STREAM${count === 1 ? '' : 'S'} ACTIVE`;
+        }
+
+        function reloadNodeStream(index) {
+            const iframe = document.getElementById(`node-frame-${index}`);
+            if (iframe) iframe.src = iframe.src;
+        }
+
+        function fullscreenNodeStream(index) {
+            const iframe = document.getElementById(`node-frame-${index}`);
+            if (iframe?.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe?.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            }
+        }
+
+        function renderStreamsMatrix() {
+            streamsGrid.innerHTML = '';
+            updateNodeCounter();
+
+            if (streams.length === 0) {
+                streamsGrid.innerHTML = `
+                    <div class="empty-matrix">
+                        <div class="empty-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                            </svg>
+                        </div>
+                        <h3>CYBER-DECK STANDBY</h3>
+                        <p>Input any YouTube live broadcast or Twitch stream URL above to initialize cyber-matrix nodes.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            streams.forEach((url, index) => {
+                const card = document.createElement('div');
+                card.className = 'stream-node-card';
+                card.innerHTML = `
+                    <div class="node-header">
+                        <span class="node-id">NODE #0${index + 1}</span>
+                        <div class="node-actions">
+                            <button class="node-btn" onclick="reloadNodeStream(${index})" title="Reload Stream">↻</button>
+                            <button class="node-btn" onclick="fullscreenNodeStream(${index})" title="Fullscreen Mode">⛶</button>
+                            <button class="node-btn purge-btn" onclick="removeStreamNode(${index})" title="Purge Node">✕</button>
+                        </div>
+                    </div>
+                    <div class="node-body">
+                        <iframe id="node-frame-${index}" src="${escapeMarkup(url)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" scrolling="no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe>
+                    </div>
+                `;
+                streamsGrid.appendChild(card);
+            });
+        }
+
+        function addStreamNode() {
+            const rawInput = streamUrlInput.value;
+            if (!rawInput) return;
+
+            const embedUrl = parseStreamSource(rawInput);
+            if (!embedUrl || !/^https?:\/\//i.test(embedUrl)) {
+                alert('Please enter a valid HTTP/HTTPS stream URL or iframe.');
+                return;
+            }
+
+            if (streams.includes(embedUrl)) {
+                alert('This stream node is already active in your matrix.');
+                return;
+            }
+
+            streams.push(embedUrl);
+            localStorage.setItem('cyber_streams_v1', JSON.stringify(streams));
+            streamUrlInput.value = '';
+            renderStreamsMatrix();
+        }
+
+        function removeStreamNode(index) {
+            streams.splice(index, 1);
+            localStorage.setItem('cyber_streams_v1', JSON.stringify(streams));
+            renderStreamsMatrix();
+        }
+
+        // Initialize application grid & state
+        updateGridMatrix();
+        renderStreamsMatrix();
+
+        streamUrlInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') addStreamNode();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === '/' && document.activeElement !== streamUrlInput) {
+                e.preventDefault();
+                streamUrlInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
